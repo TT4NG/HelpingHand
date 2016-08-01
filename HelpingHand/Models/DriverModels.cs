@@ -12,7 +12,7 @@ namespace HelpingHand.Models
         public int ID { get; set; }
         public string name { get; set; }
         public string email { get; set; }
-        public int UserID { get; set; }
+        public string UserID { get; set; }
         public int geoTag { get; set; }
         public int rating { get; set; }
         public string status { get; set; }
