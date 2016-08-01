@@ -1,4 +1,6 @@
 ﻿@model HelpingHand.Models.OrderModels
+@using Microsoft.AspNet.Identity
+
 
 @{
     ViewBag.Title = "Create";
@@ -52,6 +54,13 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.timeFrame, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.timeFrame, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.CustomerID.email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CustomerID.email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CustomerID.email, "", new { @class = "text-danger" })
             </div>
         </div>
 
