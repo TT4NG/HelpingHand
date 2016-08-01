@@ -206,12 +206,17 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201608011558057_carlos.cs" />
     <Compile Include="Migrations\201608011558057_carlos.Designer.cs">
       <DependentUpon>201608011558057_carlos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608011907246_jason update1.cs" />
+    <Compile Include="Migrations\201608011907246_jason update1.Designer.cs">
+      <DependentUpon>201608011907246_jason update1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -302,6 +307,8 @@
     <Content Include="Views\Order\Details.cshtml" />
     <Content Include="Views\Order\Edit.cshtml" />
     <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\Role\Create.cshtml" />
+    <Content Include="Views\Role\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -315,6 +322,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201608011558057_carlos.resx">
       <DependentUpon>201608011558057_carlos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608011907246_jason update1.resx">
+      <DependentUpon>201608011907246_jason update1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
