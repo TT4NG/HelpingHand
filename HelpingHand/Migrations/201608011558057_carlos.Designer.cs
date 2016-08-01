@@ -7,13 +7,13 @@ namespace HelpingHand.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class initial : IMigrationMetadata
+    public sealed partial class carlos : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(initial));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(carlos));
         
         string IMigrationMetadata.Id
         {
-            get { return "201607292058233_initial"; }
+            get { return "201608011558057_carlos"; }
         }
         
         string IMigrationMetadata.Source

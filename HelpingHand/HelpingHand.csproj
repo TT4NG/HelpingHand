@@ -209,13 +209,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201607292058233_initial.cs" />
-    <Compile Include="Migrations\201607292058233_initial.Designer.cs">
-      <DependentUpon>201607292058233_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201607292123204_update1.cs" />
-    <Compile Include="Migrations\201607292123204_update1.Designer.cs">
-      <DependentUpon>201607292123204_update1.cs</DependentUpon>
+    <Compile Include="Migrations\201608011558057_carlos.cs" />
+    <Compile Include="Migrations\201608011558057_carlos.Designer.cs">
+      <DependentUpon>201608011558057_carlos.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -228,6 +224,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-HelpingHand-20160729034115.mdf" />
+    <Content Include="App_Data\aspnet-HelpingHand-20160729034115_log.ldf">
+      <DependentUpon>aspnet-HelpingHand-20160729034115.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -303,9 +303,7 @@
     <Content Include="Views\Order\Edit.cshtml" />
     <Content Include="Views\Order\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -315,11 +313,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201607292058233_initial.resx">
-      <DependentUpon>201607292058233_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201607292123204_update1.resx">
-      <DependentUpon>201607292123204_update1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201608011558057_carlos.resx">
+      <DependentUpon>201608011558057_carlos.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
