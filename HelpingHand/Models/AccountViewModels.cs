@@ -69,6 +69,12 @@ namespace HelpingHand.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
 
+        IList<System.Web.Mvc.SelectListItem> _roleList = new List<System.Web.Mvc.SelectListItem>();
+
+        public string Role { get; set; }
+
+        public IList<System.Web.Mvc.SelectListItem> RoleList { get { return _roleList; } set { _roleList = value; } }
+
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]

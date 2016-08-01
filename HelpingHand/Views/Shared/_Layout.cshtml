@@ -23,7 +23,16 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Orders", "About", "Home")</li>
-                    <li>@Html.ActionLink("Drivers", "Contact", "Home")</li>
+                    @if (User.IsInRole("Customer"))
+                    {
+                        <li>@Html.ActionLink("Customer", "Create", "Customer")</li>
+                        <li>@Html.ActionLink("More Links", "Contact", "Home")</li> // this link can be altered to make more user specific links in the header.  Arguments are ("Link Title", "View", "Controller")
+                    }
+                    @if (User.IsInRole("Driver"))
+                    {
+                        <li>@Html.ActionLink("Driver", "Create", "Driver")</li>
+                        <li>@Html.ActionLink("More Links", "Contact", "Home")</li> // this link can be altered to make more user specific links in the header.  Arguments are ("Link Title", "View", "Controller")
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
