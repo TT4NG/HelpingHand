@@ -218,6 +218,10 @@
     <Compile Include="Migrations\201608011907246_jason update1.Designer.cs">
       <DependentUpon>201608011907246_jason update1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608012248391_kasey.cs" />
+    <Compile Include="Migrations\201608012248391_kasey.Designer.cs">
+      <DependentUpon>201608012248391_kasey.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CustomerModels.cs" />
@@ -325,6 +329,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608011907246_jason update1.resx">
       <DependentUpon>201608011907246_jason update1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608012248391_kasey.resx">
+      <DependentUpon>201608012248391_kasey.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
