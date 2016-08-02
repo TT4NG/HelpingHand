@@ -16,13 +16,13 @@
         <p>
             Helping Hand caters all legal requests, from food delivery to general shopping for those restricted to home.
         </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Customer &raquo;</a></p>
+        <p><a class="btn btn-default" href="/Order">Customer &raquo;</a></p>
     </div>
 
     <div class="col-md-5">
         <h2>Pickup Orders</h2>
         <p>Helping Hand allows any drivers in the vicinity to take up orders and look at developing requests.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Driver &raquo;</a></p>
+        <p><a class="btn btn-default" href="/Driver">Driver &raquo;</a></p>
     </div>
 </div>
 
@@ -47,7 +47,7 @@
 
 <!-- Enclose the Javascript in a "section" so that it is rendered in the correct order after scripts have been loaded etc -->
 @section scripts {
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3mnFZJXsKn31NVKssduRVdJv74gX7A5A&callback=initMap"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3mnFZJXsKn31NVKssduRVdJv74gX7A5A"></script>
     <section class="scripts">
 
         <script type="text/javascript">
@@ -70,9 +70,11 @@
             center: { lat: -34.397, lng: 150.644 },
             mapTypeId: google.maps.MapTypeId.G_NORMAL_MAP
         };
-        
-            //GeoLocation FIND
+
+        //GeoLocation FIND
         var infoWindow = new google.maps.InfoWindow({ map: map });
+        // This makes the div with id "map_canvas" a google map
+        var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function (position) {
                 var pos = {
@@ -83,6 +85,7 @@
                 infoWindow.setPosition(pos);
                 infoWindow.setContent('Location found.');
                 map.setCenter(pos);
+
             }, function () {
                 handleLocationError(true, infoWindow, map.getCenter());
             });
@@ -91,63 +94,106 @@
             handleLocationError(false, infoWindow, map.getCenter());
         }
 
-
         function handleLocationError(browserHasGeolocation, infoWindow, pos) {
             infoWindow.setPosition(pos);
             infoWindow.setContent(browserHasGeolocation ?
                                   'Error: The Geolocation service failed.' :
                                   'Error: Your browser doesn\'t support geolocation.');
         }
+        //make info window have content
+        var contentString = '<div id="content">' +
+            '<div id="siteNotice">' +
+            '</div>' +
+            '<h1 id="firstHeading" class="firstHeading">Your Spot!</h1>' +
+            '<div id="bodyContent">' +
+            '<p><b>YOU </b>Choose what you wanna do</p>' +
+            '</div>' +
+            '</div>';
         //Give the pins different colors
         var pinColor = "5864f0";
-        var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+        var pinImage = new google.maps.MarkerImage('http://chart.googleapis.com/chart?chst=d_map_spin&chld=1.15|0|' + pinColor +
+          '|40|_|%E2%80%A2',
             new google.maps.Size(21, 34),
             new google.maps.Point(0, 0),
-            new google.maps.Point(10, 34));
-        // This makes the div with id "map_canvas" a google map
-        var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+            new google.maps.Point(10, 34),
+            new google.maps.Size(21, 34));
+        //new info
+        var infoW = new google.maps.InfoWindow({
+            content: contentString
+        });
         //Propagate Some Markers
-        var marker1 = new google.maps.Marker({
+        var MKE = new google.maps.Marker({
             position: Milwaukee,
             map: map,
-            title: 'Order!'
-        });
-        var marker2 = new google.maps.Marker({
-            position: { lat: 43.064426, lng: -87.8826093 },
-            map: map,
-            title: 'Driver!',
-            icon: pinImage
-        });
-        var marker3 = new google.maps.Marker({
-            position: { lat: 43.074064, lng: -87.8835057 },
-            map: map,
-            title: 'Driver!',
-            icon: pinImage
-        });
-        map.addListener('center_changed', function () {
-            // 3 seconds after the center of the map has changed, pan back to the
-            // marker.
-            window.setTimeout(function () {
-                map.panTo(marker.getPosition());
-            }, 3000);
+            title: 'YOU!'
+
         });
 
-        marker.addListener('click', function () {
-            map.setZoom(8);
-            map.setCenter(marker.getPosition());
-        });
-        
+        //markers added, that pan and list information
+        var locations = [
+            ['JSON Honeyjaeger', 'Get Groceries: $30',43.074064, -87.8835057, 4],
+            ['Tom Tang', 'Get Tools: $50',43.075710, -87.875663, 3],
+            ['Carlos Rodriguez', 'Grab Laundry: $20', 43.067325, -87.878130, 2],
+            ['Andre Kum.', 'Pickup Kids: $15', 43.072787, -87.872069, 1],
+            ['KChipp', 'Deliver goods: $90', 43.0324152, -87.9091722]
+        ];
+        var infowindow = new google.maps.InfoWindow();
+
+        var marker, i;
+        //////////////////////////////////////////
+
+        for (i = 0; i < locations.length; i++) {
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(locations[i][2], locations[i][3]),
+                map: map
+            });
+            //on click features
+            google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                return function () {
+                    infowindow.setContent(locations[i][0] + '</br>'+ locations[i][1]);
+                    infowindow.open(map, marker);
+                    map.setZoom(14);
+                    map.panTo(marker.getPosition());
+
+                    //directions on click
+                    var directionsService = new google.maps.DirectionsService;
+                    var directionsDisplay = new google.maps.DirectionsRenderer();
+                    var start = MKE.getPosition();
+                    var end = (marker.getPosition());
+                    directionsDisplay.setMap(map);
+                    displayRoute(start, end, directionsService, directionsDisplay);
+
+
+                    //DISPLAY
+                    function displayRoute(start, end, directionsService, directionsDisplay) {
+                        directionsService.route({
+                            origin: start,
+                            destination: end,
+                            travelMode: 'DRIVING'
+                        }, function (response, status) {
+                            if (status === 'OK') {
+                                directionsDisplay.setDirections(response);
+                            } else {
+                                alert('Could not display directions due to: ' + status);
+                            }
+                        });
+                    }
+                }
+            })(marker, i));
+        }
     }
 
         </script>
     </section>
 }
 <div class="row">
-    <div class="col-md-12">
-        <font color="red">Red</font> = Orders
-        <br />
-        <font color="blue">Blue</font> = Drives
+    <div class="col-md-2">
+        <font color="red"><b>Red</b></font> = Orders
     </div>
+    <div class="col-md-2">
+        <font color="blue"><b>Blue</b></font> = Drivers
+    </div>
+
 </div>
 
 

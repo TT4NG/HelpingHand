@@ -143,7 +143,10 @@ namespace HelpingHand.Controllers
         public ActionResult Register()
         {
             var model = new RegisterViewModel();
+        
             var roles = context.Roles.ToList();
+            
+
             foreach (var r in roles)
             { model.RoleList.Add(new SelectListItem() { Text = r.Name, Value = r.Name }); }
 

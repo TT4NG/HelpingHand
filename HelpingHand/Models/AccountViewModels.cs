@@ -70,6 +70,7 @@ namespace HelpingHand.Models
         public string Email { get; set; }
 
         IList<System.Web.Mvc.SelectListItem> _roleList = new List<System.Web.Mvc.SelectListItem>();
+        
 
         public string Role { get; set; }
 
