@@ -1,0 +1,25 @@
+﻿@model IEnumerable<HelpingHand.Models.ApplicationUser>
+@{
+    ViewBag.Title = "Admin";
+}
+
+<h2>Admin Manager</h2>
+
+<table class="table">
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+

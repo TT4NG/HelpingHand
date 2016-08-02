@@ -110,7 +110,9 @@ namespace HelpingHand.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             DriverModels driverModels = db.DriverModels.Find(id);
+            ApplicationUser driverLog = db.Users.Where(x => x.Id == driverModels.UserID).SingleOrDefault();
             db.DriverModels.Remove(driverModels);
+            db.Users.Remove(driverLog);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

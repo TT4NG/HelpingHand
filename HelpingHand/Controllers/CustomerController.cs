@@ -110,7 +110,9 @@ namespace HelpingHand.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             CustomerModels customerModels = db.CustomerModels.Find(id);
+            ApplicationUser customerLog = db.Users.Where(x => x.Id == customerModels.UserID).SingleOrDefault();
             db.CustomerModels.Remove(customerModels);
+            db.Users.Remove(customerLog);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

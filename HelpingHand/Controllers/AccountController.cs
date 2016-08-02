@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using HelpingHand.Models;
+using System.Net;
 
 namespace HelpingHand.Controllers
 {
@@ -426,6 +427,42 @@ namespace HelpingHand.Controllers
         public ActionResult ExternalLoginFailure()
         {
             return View();
+        }
+
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult Admin()
+        {
+            var authIDs = context.Users.Where(x => x.Roles == context.Roles && context.Roles.SingleOrDefault().Name == "Admin" || context.Roles.SingleOrDefault().Name == "Manager");
+            return View("", "", authIDs);
+        }
+
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ApplicationUser managerUser = context.Users.Find(id);
+            if (managerUser == null)
+            {
+                return HttpNotFound();
+            }
+            return View(managerUser);
+        }
+
+        // POST: Driver/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            ApplicationUser managerUser = context.Users.Find(id);
+            context.Users.Remove(managerUser);
+            context.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
