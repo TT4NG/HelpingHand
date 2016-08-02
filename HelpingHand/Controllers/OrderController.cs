@@ -6,6 +6,15 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security;
+
+using HelpingHand.Models;
+
+
+
+
 using HelpingHand.Models;
 
 namespace HelpingHand.Controllers
@@ -36,7 +45,7 @@ namespace HelpingHand.Controllers
         }
 
         // GET: Order/Create
-        public ActionResult Create()
+        public ActionResult Create() // This is the CREATE button to create a new request in the Cusotmer View
         {
             return View();
         }
@@ -50,6 +59,11 @@ namespace HelpingHand.Controllers
         {
             if (ModelState.IsValid)
             {
+                //string aLoggedInUserName = User.Identity.GetUserName();
+                //string aLoggedInUserIDKey = User.Identity.GetUserId();
+                var currentUser = User.Identity.GetUserId();
+                CustomerModels customerID = db.CustomerModels.Where(x => x.UserID == currentUser).SingleOrDefault();
+                orderModels.CustomerID = customerID;
                 db.OrderModels.Add(orderModels);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -78,7 +92,7 @@ namespace HelpingHand.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,status,payment,fee,orderDetails,timeFrame")] OrderModels orderModels)
+        public ActionResult Edit([Bind(Include = "ID,status,payment,fee,orderDetails,timeFrame,email")] OrderModels orderModels)
         {
             if (ModelState.IsValid)
             {

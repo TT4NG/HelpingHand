@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<HelpingHand.Models.OrderModels>
+@using Microsoft.AspNet.Identity
 
 @{
     ViewBag.Title = "Index";
@@ -26,6 +27,12 @@
         <th>
             @Html.DisplayNameFor(model => model.timeFrame)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerID.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DriverID.email)
+        </th>
         <th></th>
     </tr>
 
@@ -45,6 +52,12 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.timeFrame)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerID.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DriverID.email)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
