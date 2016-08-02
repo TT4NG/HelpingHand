@@ -163,15 +163,28 @@ namespace HelpingHand.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-
                     //Assign Role to user Here 
                     await this.UserManager.AddToRoleAsync(user.Id, model.Role);
                     //Ends Here
 
-
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
-                    return RedirectToAction("Index", "Home");
+                    if (model.Role == "Customer")
+                    {
+                        var customer = new CustomerModels() { name = null, street = null, city = null, state = null, zip = null, email = null, rating = null, status = null, registrationDate = DateTime.Now, UserID = user.Id };
+                        context.CustomerModels.Add(customer);
+                        context.SaveChanges();
+                        return RedirectToAction("Edit", "Customer", new { Id = customer.ID });
+                    }
+
+                    if (model.Role == "Driver")
+                    {
+                        var driver = new DriverModels() { name = null, email = user.Id, UserID = user.Id, geoTag = null, rangePreference = null, rating = null, status = null, registrationDate = DateTime.Now };
+                        context.DriverModels.Add(driver);
+                        context.SaveChanges();
+                        return RedirectToAction("Edit", "Driver", new { Id = driver.ID });
+                    }
+                    //return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
             }

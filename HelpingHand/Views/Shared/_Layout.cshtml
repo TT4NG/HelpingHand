@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    
 
 </head>
 <body>
@@ -25,12 +26,12 @@
                     <li>@Html.ActionLink("Orders", "About", "Home")</li>
                     @if (User.IsInRole("Customer"))
                     {
-                        <li>@Html.ActionLink("Customer", "Create", "Customer")</li>
+                        <li>@Html.ActionLink("Customer", "GetCustomerID", "Home")</li>
                         <li>@Html.ActionLink("More Links", "Contact", "Home")</li> // this link can be altered to make more user specific links in the header.  Arguments are ("Link Title", "View", "Controller")
                     }
                     @if (User.IsInRole("Driver"))
                     {
-                        <li>@Html.ActionLink("Driver", "Create", "Driver")</li>
+                        <li>@Html.ActionLink("Driver", "GetDriverID", "Home")</li>
                         <li>@Html.ActionLink("More Links", "Contact", "Home")</li> // this link can be altered to make more user specific links in the header.  Arguments are ("Link Title", "View", "Controller")
                     }
                 </ul>

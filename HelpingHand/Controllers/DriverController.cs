@@ -78,13 +78,13 @@ namespace HelpingHand.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,name,email,UserID,geoTag,rating,status,rangePreference,registrationDate")] DriverModels driverModels)
+        public ActionResult Edit([Bind(Include = "ID,name,street,city,state,zip,email,driverslicense,UserID,geoTag,rating,status,rangePreference,registrationDate")] DriverModels driverModels)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(driverModels).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
             return View(driverModels);
         }

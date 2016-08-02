@@ -14,10 +14,10 @@ namespace HelpingHand.Models
         public string street { get; set; }
         public string city { get; set; }
         public string state { get; set; }
-        public int zip { get; set; }
+        public int? zip { get; set; }
         public string email { get; set; }
-        public int UserID { get; set; }
-        public int rating { get; set; }
+        public string UserID { get; set; }
+        public int? rating { get; set; }
         public string status { get; set; }
         public DateTime registrationDate { get; set; }
 
