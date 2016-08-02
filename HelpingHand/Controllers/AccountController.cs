@@ -182,12 +182,13 @@ namespace HelpingHand.Controllers
 
                     if (model.Role == "Driver")
                     {
-                        var driver = new DriverModels() { name = null, email = user.Id, UserID = user.Id, geoTag = null, rangePreference = null, rating = null, status = null, registrationDate = DateTime.Now };
+                        var driver = new DriverModels() { name = null, email = null, UserID = user.Id, geoTag = null, rangePreference = null, rating = null, status = null, registrationDate = DateTime.Now };
                         context.DriverModels.Add(driver);
                         context.SaveChanges();
                         return RedirectToAction("Edit", "Driver", new { Id = driver.ID });
                     }
-                    //return RedirectToAction("Index", "Home");
+
+                    return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
             }
