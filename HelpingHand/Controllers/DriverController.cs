@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using HelpingHand.Models;
 
 namespace HelpingHand.Controllers
@@ -17,9 +18,40 @@ namespace HelpingHand.Controllers
         // GET: Driver
         public ActionResult Index()
         {
-            return View(db.DriverModels.ToList());
+            var stuff = db.OrderModels.Include(x => x.CustomerID);
+            stuff.Include(x => x.DriverID);
+            return View(stuff.ToList());
         }
 
+        // POST: Driver/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
+        // GET: Driver/Pick/5
+        public ActionResult Pick(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            //=========================================
+            var currentUser = User.Identity.GetUserId();
+            DriverModels driverID = db.DriverModels.Where(x => x.UserID == currentUser).SingleOrDefault();
+            OrderModels orderModels = db.OrderModels.Where(x => x.ID == id).SingleOrDefault();
+            orderModels.DriverID = driverID;
+            db.Entry(orderModels).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+
+
+            //=========================================
+            DriverModels driverModels = db.DriverModels.Find(id);
+            if (driverModels == null)
+            {
+                return HttpNotFound();
+            }
+            return View(driverModels);
+        }
         // GET: Driver/Details/5
         public ActionResult Details(int? id)
         {
