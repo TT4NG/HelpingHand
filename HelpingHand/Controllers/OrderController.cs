@@ -14,9 +14,6 @@ using HelpingHand.Models;
 
 
 
-
-using HelpingHand.Models;
-
 namespace HelpingHand.Controllers
 {
     public class OrderController : Controller

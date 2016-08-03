@@ -239,6 +239,12 @@
     <Compile Include="Models\OrderModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utilities\Common.cs" />
+    <Compile Include="Utilities\Configuration.cs" />
+    <Compile Include="Utilities\RequestFlow.cs" />
+    <Compile Include="Utilities\RequestFlowItem.cs" />
+    <Compile Include="Utilities\SampleCategory.cs" />
+    <Compile Include="Utilities\SampleItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\aspnet-HelpingHand-20160729034115.mdf" />
