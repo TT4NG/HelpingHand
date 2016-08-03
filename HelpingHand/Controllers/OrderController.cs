@@ -26,7 +26,13 @@ namespace HelpingHand.Controllers
         // GET: Order
         public ActionResult Index()
         {
-            return View(db.OrderModels.ToList());
+            var tbList = db.OrderModels.ToList();
+
+            var stuff = db.OrderModels.Include(x => x.CustomerID);
+            stuff.Include(x => x.DriverID);
+
+            return View(stuff.ToList() );
+
         }
 
         // GET: Order/Details/5
