@@ -7,7 +7,7 @@
 
 <div class="jumbotron" style="background-image: url(http://helpinghands-salem.org/wp-content/uploads/2014/09/helping-hands-bg.png); background-size: 50%;">
     <h1>Helping Hand</h1>
-    <h2>Driver's Aide and Order Details</h2>
+
 
 </div>
 <div class="row">
@@ -59,19 +59,24 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.status)
+                <p>Order Status</p>
+                @*@Html.DisplayNameFor(model => model.status)*@
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.payment)
+                <p>Payment</p>
+                @*@Html.DisplayNameFor(model => model.payment)*@
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.fee)
+                <p>Order Fee</p>
+                @*@Html.DisplayNameFor(model => model.fee)*@
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.orderDetails)
+                <p>Order Details</p>
+                @*@Html.DisplayNameFor(model => model.orderDetails)*@
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.timeFrame)
+                <p>Delivery ETA</p>
+                @*@Html.DisplayNameFor(model => model.timeFrame)*@
             </th>
             <th>
                 <p> Customer</p>
@@ -221,7 +226,7 @@
                                 map.panTo(marker.getPosition());
 
                                 //set the row below the map and directions with the infowindow details
-                                document.getElementById("order").innerText = info;
+                                
                                 //add geolocation for start position
                                 navigator.geolocation.getCurrentPosition(function (position) {
                                     var start = {
@@ -266,8 +271,7 @@
                 //reset markers
                 map.addListener('click', function () {
                     map.setZoom(13);
-                    document.getElementById("directions").innerHTML = "";
-                    document.getElementById("order").innerHTML = "";
+                    document.getElementById("directions").innerText= "";
                     mappy();
                 });
                 //Removes markers

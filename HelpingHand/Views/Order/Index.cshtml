@@ -4,31 +4,40 @@
 @{
     ViewBag.Title = "Index";
 }
+<div class="jumbotron" style="background-image: url(http://helpinghands-salem.org/wp-content/uploads/2014/09/helping-hands-bg.png); background-size: 50%;">
+    <h1>Helping Hand</h1>
 
-<h2>Index</h2>
+
+</div>
+<h2>Place Your Order Here</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New Order", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.status)
+            <p>Order Status</p>
+            @*@Html.DisplayNameFor(model => model.status)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.payment)
+            <p>Payment</p>
+            @*@Html.DisplayNameFor(model => model.payment)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fee)
+            <p>Order Fee</p>
+            @*@Html.DisplayNameFor(model => model.fee)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.orderDetails)
+            <p>Order Details</p>
+            @*@Html.DisplayNameFor(model => model.orderDetails)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.timeFrame)
+            <p>Delivery Timeframe</p>
+            @*@Html.DisplayNameFor(model => model.timeFrame)*@
         </th>
         <th>
-            <p> Customer</p>
+            <p>Customer</p>
             @*@Html.DisplayNameFor(model => model.CustomerID.email)*@
         </th>
         <th>
@@ -38,35 +47,36 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.payment)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fee)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.orderDetails)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.timeFrame)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CustomerID.email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DriverID.email)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.payment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fee)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.orderDetails)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.timeFrame)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerID.email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DriverID.email)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
 
 </table>
